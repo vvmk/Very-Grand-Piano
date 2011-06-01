@@ -1,0 +1,25 @@
+body, #container, div, html {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	display: block;
+	height: 100%;
+	width:auto;
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	text-decoration: none;
+	border: 1px solid black;
+	border-left: none;
+	
+}
+
+#container {
+	padding: 0px;
+	margin: 0px;
+}
+
+.hidden {
+	display: none;
+}

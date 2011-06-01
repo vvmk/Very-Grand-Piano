@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="./keys.css" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.js"></script>
+	<script type="text/javascript" src="http://cdn.socket.io/stable/socket.io.js"></script>
+	<script type="text/javascript">
+		
+		var socketURL = "REPLACEME";
+    	var socket = new io.Socket('', {port: 8080});
+
+	    socket.connect();
+	    socket.on('message', function(message) {
+	        //$('#divTime').append("note"+message+".wav<br />");
+			var note = "note"+message;
+			//alert("message received: "+ message);
+			document.getElementById(note).play();
+	    });
+	    function sendNote(noteId) {
+	        socket.send(noteId);
+			document.getElementById("note"+noteId).play();
+	    }
+	</script>
+</head>
+<body>
+	<div id="audio">
+		<audio id="note0" src="http://cloudmir.com/node-assets/note0.wav" autobuffer="autobuffer"></audio>
+		<audio id="note1" src="http://cloudmir.com/node-assets/note1.wav" autobuffer="autobuffer"></audio>
+		<audio id="note2" src="http://cloudmir.com/node-assets/note2.wav" autobuffer="autobuffer"></audio>
+		<audio id="note3" src="http://cloudmir.com/node-assets/note3.wav" autobuffer="autobuffer"></audio>
+		<audio id="note4" src="http://cloudmir.com/node-assets/note4.wav" autobuffer="autobuffer"></audio>
+	</div>
+	
+    <div class="hidden" id="divTime"></div><br />
+	<div id="container">
+		<a href="javascript:sendNote('0');" id="0" class="key"></a>
+		<a href="javascript:sendNote('1');" id="1" class="key"></a>
+		<a href="javascript:sendNote('2');" id="2" class="key"></a>
+		<a href="javascript:sendNote('3');" id="3" class="key"></a>
+		<a href="javascript:sendNote('4');" id="4" class="key"></a>
+	</div>
+	
+	
+	<script>
+		//style
+		var h = $(window).height();
+		var w = $(window).width();
+	
+		$('.key').height(h);
+		$('.key').width((w/5)-8);
+	
+	$(window).resize(function() {
+		//style
+		var h = $(window).height();
+		var w = $(window).width();
+	
+		$('.key').height(h);
+		$('.key').width((w/5)-8);
+	});
+
+	</script>
+</body>
+</html>
